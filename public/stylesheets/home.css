@@ -106,7 +106,10 @@
 /* tablets */
 @media (min-width:768px) {
 
-
+    /*BANNER */
+    .carousel-item {
+        height: 22vh;
+    }
 
     /* MAIN */
     .home__main {
@@ -160,6 +163,11 @@
     .home__header__nav--navigation, .home__header__nav--user {
         display: flex;
         gap: 10px;
+    }
+
+     /*BANNER */
+     .carousel-item {
+        height: 58vh;
     }
 
     /* MAIN */
