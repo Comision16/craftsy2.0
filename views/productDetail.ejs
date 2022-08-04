@@ -10,7 +10,7 @@
     <main class="detail__main">
         <section class="detail__main__section general__main__section">
             <article class="detail__main__section__article">
-                <img src="/images/img-phone-01.jpg" alt="">
+                <img src="/images/<%= product.image %>" alt="">
                 <div class="detail__main__section--images">
                     <img src="/images/img-phone-01.jpg" alt="">
                     <img src="/images/img-phone-02.jpg" alt="">
@@ -18,10 +18,11 @@
                 </div>
             </article>
             <div class="detail__main__section--content">
-                <h2>Nombre del producto</h2>
+                <h1><%= product.title %></h1>
+                <h2>PRECIO: <%= product.price %></h2>
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi quia, eius autem veniam accusantium
                     maiores doloribus aliquid possimus quae debitis?</p>
-                <a class="general__button__product " href="">Añadir al carrito</a>
+                <a class="general__button__product " href="/products/edit/<%= product.id %>">Editar producto</a>
             </div>
         </section>
     </main>

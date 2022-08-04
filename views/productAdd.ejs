@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <%- include('./partials/head', {
+        title : 'Nuevo producto'
+    }) %> 
+
+
+<body class="result">
+    <%- include('./partials/header') %> 
+
+    <main class="container">
+        <div class="row mt-5">
+            <div class="col-12 col-md-8 col-lg-6 mx-auto">
+                <section class="card shadow">
+                    <div class="card-header">
+                        <h4>Nuevo producto</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="" method="POST">
+                            <div class="mb-3">
+                                <label for="title" class="form-label">Producto</label>
+                                <input type="text" class="form-control" id="title" name="title">
+                              </div>
+                              <div class="mb-3">
+                                <label for="price" class="form-label">Precio</label>
+                                <input class="form-control" id="price" type="number" name="price">
+                              </div>
+                              <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Enviar</button>
+                              </div>
+                        </form>
+                        
+                    </div>
+                </section>
+            </div>
+        </div>
+      
+    </main>
+</body>
+
+</html>

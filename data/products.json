@@ -1,0 +1,74 @@
+[
+    {
+        "id" : 1,
+        "title" : "Samsung Galaxy A20",
+        "price" : 100,
+        "image" : "img-phone-01.jpg"
+    },
+    {
+        "id" : 2,
+        "title" : "Samsung Galaxy S20",
+        "price" : 1000,
+        "image" : "img-phone-02.jpg"
+    },
+    {
+        "id" : 3,
+        "title" : "Samsung Galaxy J7",
+        "price" : 60,
+        "image" : "img-phone-03.jpg"
+    },
+    {
+        "id" : 4,
+        "title" : "Nokia 1100",
+        "price" : 10,
+        "image" : "img-phone-01.jpg"
+    },
+    {
+        "id" : 5,
+        "title" : "Iphone 13",
+        "price" : 1000,
+        "image" : "img-phone-02.jpg"
+    },
+    {
+        "id" : 6,
+        "title" : "Iphone 10",
+        "price" : 500,
+        "image" : "img-phone-03.jpg"
+    },
+    {
+        "id" : 7,
+        "title" : "Blackberry",
+        "price" : 500,
+        "image" : "img-phone-01.jpg"
+    },
+    {
+        "id" : 8,
+        "title" : "Motorola X-Play",
+        "price" : 200,
+        "image" : "img-phone-02.jpg"
+    },
+    {
+        "id" : 9,
+        "title" : "Huawei",
+        "price" : 200,
+        "image" : "img-phone-03.jpg"
+    },
+    {
+        "id" : 10,
+        "title" : "Xiaomi Redmi Note",
+        "price" : 200,
+        "image" : "img-phone-01.jpg"
+    },
+    {
+        "id" : 11,
+        "title" : "Motorola Tango 300",
+        "price" : 200,
+        "image" : "img-phone-02.jpg"
+    },
+    {
+        "id" : 12,
+        "title" : "Phillips 400",
+        "price" : 200,
+        "image" : "img-phone-03.jpg"
+    }
+]
