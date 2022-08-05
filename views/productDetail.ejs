@@ -19,7 +19,14 @@
             </article>
             <div class="detail__main__section--content">
                 <h1><%= product.title %></h1>
-                <h2>PRECIO: <%= product.price %></h2>
+                <div class="d-flex g-2">
+                    <h2>PRECIO: <%= product.price %></h2>
+                    <% if (product.discount > 0) { %>
+                        <h4 class="my-3"><%= product.discount %>%</h4>
+
+                    <% } %>
+                </div>
+              
                 <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi quia, eius autem veniam accusantium
                     maiores doloribus aliquid possimus quae debitis?</p>
                 <a class="general__button__product " href="/products/edit/<%= product.id %>">Editar producto</a>

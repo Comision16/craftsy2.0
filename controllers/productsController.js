@@ -1,4 +1,8 @@
+const fs = require('fs');
+const path = require('path');
+
 const products = require('../data/products.json');
+const brands = require('../data/brands.json');
 
 module.exports = {
     detail : (req,res) => {
@@ -12,10 +16,28 @@ module.exports = {
         })
     },
     add : (req,res) => {
-        return res.render('productAdd')
+        return res.render('productAdd',{
+            brands : brands.sort()
+        })
     },
     store : (req,res) => {
-        return res.send(req.body)
+
+        let {title, price,discount, description, brand, section} = req.body;
+        let newProduct = {
+            id : products[products.length - 1].id + 1,
+            ...req.body,
+           title : title.trim(),
+           description : description.trim(),
+           price : +price,
+           discount : +discount,
+           image : "default-image.png"
+        }
+
+        let productsNew = [...products, newProduct];
+
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew),'utf-8');    
+        return res.redirect('/');
+
     },
     edit : (req,res) => {
 

@@ -1,10 +1,17 @@
-const products = require('../data/products.json');
-
+const fs = require('fs');
+const path = require('path');
 module.exports = {
+
     index: (req, res) => {
+        const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
+        let destacados = products.filter(product => product.section === "temporada" && product.discount === 0);
+        let ofertas = products.filter(product => product.discount > 0);
+        let samsung = products.filter(product => product.brand.toLowerCase() === "samsung")
         return res.render("home", {
             title: "Home",
-            products
+            destacados,
+            ofertas,
+            samsung
         });
     },
     search : (req,res) => {

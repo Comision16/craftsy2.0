@@ -97,35 +97,59 @@
     </section>
     <main class="home__main">
       <section class="home__main__section--products general__main__section">
+        <h2 class="w-100">DESTACADOS</h2>
 
-        <% products.forEach(({id,title, image}) => { %>
+        <% destacados.forEach(({id,title, image, description}) => { %>
+
           <article class="home__main__section__article--product">
             <figure>
               <img src="/images/<%= image %>" alt="" />
             </figure>
-            <h2><%= title %></h2>
+            <h3><%= title %></h3>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
-              quia, eius autem veniam accusantium maiores doloribus aliquid
-              possimus quae debitis?
+              <%= description %> - <%= id %>  - <%= description %>  
             </p>
             <a class="general__button__product" href="/products/detail/<%= id %>"
               >ver más</a
             >
           </article>
         <% }) %>
-       
+        <h2 class="w-100">OFERTAS</h2>
+        <% ofertas.forEach(({id,title, image, description}) => { %>
+          <article class="home__main__section__article--product">
+            <figure>
+              <img src="/images/<%= image %>" alt="" />
+            </figure>
+            <h3><%= title %></h3>
+            <p>
+              <%= description %> - <%= id %>  - <%= description %>  
+            </p>
+            <a class="general__button__product" href="/products/detail/<%= id %>"
+              >ver más</a
+            >
+          </article>
+        <% }) %>
      
         <article style="width: 90%; margin: 0 auto; ">
           <div class="glider-contain" >
             <div class="glider" style="overflow-x:hidden">
-              <div><img src="/images/celulares/celu1.jpeg" alt="" /></div>
+             <!--  <div><img src="/images/celulares/celu1.jpeg" alt="" /></div>
               <div><img src="/images/celulares/celu2.png" alt="" /></div>
               <div><img src="/images/celulares/celu3.png" alt="" /></div>
               <div><img src="/images/celulares/celu4.jpg" alt="" /></div>
               <div><img src="/images/celulares/celu6.jpg" alt="" /></div>
               <div><img src="/images/celulares/celu7.png" alt="" /></div>
-              <div><img src="/images/celulares/celu8.jpg" alt="" /></div>
+              <div><img src="/images/celulares/celu8.jpg" alt="" /></div> -->
+              <% samsung.forEach(({id, title, image}) => { %>
+                <div>
+                  <article class="home__main__section__article--product">
+                    <a href="/products/detail/<%= id %>"> <img class="w-100" src="/images/<%= image %>" alt="" /></a>
+                     
+                    <p><%= title %></p>
+                  </article>
+                </div>
+              <% }) %>
+            
             </div>
 
             <button aria-label="Previous" class="glider-prev">«</button>
@@ -191,7 +215,7 @@
       settings: {
         slidesToShow: 4,
         slidesToScroll: 2,
-        itemWidth: 150,
+        itemWidth: 100,
         duration: 0.25
       }
     }
