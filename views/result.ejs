@@ -1,38 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
+<%- include('./partials/head', { title : 'Resultado de la búsqueda' }) %>
 
-    <%- include('./partials/head', {
-        title : 'Resultado de la búsqueda'
-    }) %> 
+    <body class="result">
+        <%- include('./partials/header') %>
 
+            <main class="container">
+                <div class="row m-5">
+                    <h4>Resultado de la búsqueda: <%= keywords %></h4>
+                    <% if (result.length > 0) { %>
+                        <% result.forEach(({id, title,image}) => { %>
+                            <div class="col-12 col-md-4 col-lg-3 g-2">
+                                <div class="card">
+                                    <img src="/images/<%= image %>" class="card-img-top" alt="...">
+                                    <div class="card-body">
+                                      <h5 class="card-title"><%= title %></h5>
+                                      <a href="/products/detail/<%= id %>" class="btn btn-primary">Ver más</a>
+                                    </div>
+                                  </div>
+                            </div>
+                        <% }) %>
+                      
 
-<body class="result">
-    <%- include('./partials/header') %> 
-
-    <main class="container">
-        <div class="row mt-5">
-            <div class="col-12 col-md-8 mx-auto">
-                <section class="card shadow">
-                    <div class="card-header">
-                        <h4>Resultado de la búsqueda: <%= keywords %></h4>
-                    </div>
-                    <div class="card-body">
-                        <% if (result.length > 0) { %>
-                            <ul>
-                                <% result.forEach(product => { %>
-                                 <li><%= product.title %></li> 
-                                <% }) %>
-                            </ul>
                         <% }else{ %>
                             <p>No hay resultados 😒</p>
-                        <% } %>
-                        
-                    </div>
-                </section>
-            </div>
-        </div>
-      
-    </main>
-</body>
+                            <% } %>
+                </div>
+            </main>
+    </body>
 
 </html>

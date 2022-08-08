@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
-  <%- include('./partials/head') %>
+  <%- include('./partials/head', {
+    title : 'Home'
+  }) %>
   <body class="home">
     <%- include('./partials/header') %>
     <section class="home__banner d-none d-md-block">
@@ -114,8 +116,8 @@
             >
           </article>
         <% }) %>
-        <h2 class="w-100">OFERTAS</h2>
-        <% ofertas.forEach(({id,title, image, description}) => { %>
+        <h2 class="w-100">MÁS POPULARES</h2>
+        <% populares.forEach(({id,title, image, description}) => { %>
           <article class="home__main__section__article--product">
             <figure>
               <img src="/images/<%= image %>" alt="" />

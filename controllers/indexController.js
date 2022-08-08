@@ -5,18 +5,18 @@ module.exports = {
     index: (req, res) => {
         const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
         let destacados = products.filter(product => product.section === "temporada" && product.discount === 0);
-        let ofertas = products.filter(product => product.discount > 0);
-        let samsung = products.filter(product => product.brand.toLowerCase() === "samsung")
+        let populares = products.filter(product =>  product.section === "popular");
+        let samsung = products.filter(product => product.brand.toLowerCase() === "samsung");
         return res.render("home", {
-            title: "Home",
             destacados,
-            ofertas,
+            populares,
             samsung
         });
     },
     search : (req,res) => {
 
         let {keywords} = req.query;
+        const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
 
         let result = products.filter(product => product.title.toLowerCase().includes(keywords.toLowerCase()));
 

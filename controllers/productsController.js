@@ -6,7 +6,9 @@ const brands = require('../data/brands.json');
 
 module.exports = {
     detail : (req,res) => {
-        
+
+        const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
+
         const {id} = req.params;
         let product = products.find(product => product.id === +id)
 
@@ -35,7 +37,7 @@ module.exports = {
 
         let productsNew = [...products, newProduct];
 
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew),'utf-8');    
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew,null,3),'utf-8');    
         return res.redirect('/');
 
     },
@@ -45,7 +47,52 @@ module.exports = {
         let product = products.find(product => product.id === +id)
 
         return res.render('productEdit',{
-            product
+            product,
+            brands
         })
+    },
+    update : (req,res) => {
+
+        const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
+
+        const {id} = req.params;
+        let {title, price,discount, description, brand, section} = req.body;
+
+
+        const productModify = products.map(product => {
+            if(product.id === +id){
+                return {
+                    ...product,
+                    title : title.trim(),
+                    description : description.trim(),
+                    price : +price,
+                    discount : +discount,
+                    brand,
+                    section
+                }
+            }else{
+                return product
+            }
+        })
+
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productModify,null,3),'utf-8');    
+        return res.redirect('/products/detail/' + id);
+
+    },
+    remove : (req,res) => {
+        return res.render('confirm', {
+            id : req.params.id
+        })
+    },
+    destroy : (req,res) => {
+
+        const {id} = req.params;
+        const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
+
+        const productFilter = products.filter(product => product.id !== +id);
+
+        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productFilter,null,3),'utf-8');    
+        return res.redirect('/');
+
     }
 }
