@@ -101,11 +101,11 @@
       <section class="home__main__section--products general__main__section">
         <h2 class="w-100">DESTACADOS</h2>
 
-        <% destacados.forEach(({id,title, image, description}) => { %>
+        <% destacados.forEach(({id,title, images, description}) => { %>
 
           <article class="home__main__section__article--product">
             <figure>
-              <img src="/images/<%= image %>" alt="" />
+              <img src="/images/products/<%= images[0] %>" alt="" />
             </figure>
             <h3><%= title %></h3>
             <p>
@@ -117,10 +117,10 @@
           </article>
         <% }) %>
         <h2 class="w-100">MÁS POPULARES</h2>
-        <% populares.forEach(({id,title, image, description}) => { %>
+        <% populares.forEach(({id,title, images, description}) => { %>
           <article class="home__main__section__article--product">
             <figure>
-              <img src="/images/<%= image %>" alt="" />
+              <img src="/images/products/<%= images[0] %>" alt="" />
             </figure>
             <h3><%= title %></h3>
             <p>

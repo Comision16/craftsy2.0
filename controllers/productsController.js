@@ -24,8 +24,10 @@ module.exports = {
     },
     store : (req,res) => {
 
-
         let {title, price,discount, description, brand, section} = req.body;
+
+        let images = req.files.map(file => file.filename);
+
         let newProduct = {
             id : products[products.length - 1].id + 1,
             ...req.body,
@@ -33,13 +35,13 @@ module.exports = {
            description : description.trim(),
            price : +price,
            discount : +discount,
-           image : req.file ? req.file.filename : "default-image.png"
+           images
         }
 
         let productsNew = [...products, newProduct];
 
         fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew,null,3),'utf-8');    
-        return res.redirect('/');
+        return res.redirect('/products/detail/' + newProduct.id);
 
     },
     edit : (req,res) => {
