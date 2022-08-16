@@ -24,6 +24,7 @@ module.exports = {
     },
     store : (req,res) => {
 
+
         let {title, price,discount, description, brand, section} = req.body;
         let newProduct = {
             id : products[products.length - 1].id + 1,
@@ -32,7 +33,7 @@ module.exports = {
            description : description.trim(),
            price : +price,
            discount : +discount,
-           image : "default-image.png"
+           image : req.file ? req.file.filename : "default-image.png"
         }
 
         let productsNew = [...products, newProduct];

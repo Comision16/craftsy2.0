@@ -188,5 +188,15 @@
       "brand": "Sony",
       "description": "Este es hijo mío",
       "image": "default-image.png"
+   },
+   {
+      "id": 21,
+      "title": "Motorola E7",
+      "price": 2000,
+      "discount": 5,
+      "section": "temporada",
+      "brand": "Motorola",
+      "description": "lorem ipsum dolor amet sit",
+      "image": "product-1660337792070.jpg"
    }
 ]
