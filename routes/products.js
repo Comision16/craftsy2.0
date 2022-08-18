@@ -4,10 +4,13 @@ const {detail, add, store, edit,update, remove, destroy} = require('../controlle
 
 const {uploadImageProduct} = require('../middlewares/upLoadFiles');
 
+const productsValidator = require('../validations/productsAdd');
+
+
 /* /products */
 router
     .get('/add',add)
-    .post('/add',uploadImageProduct.array('image',3),store)
+    .post('/add',productsValidator,uploadImageProduct.array('image',3),store)
     /*.post('/add',uploadImageProduct.single('image'),store)*/
     .get('/detail/:id',detail)
     .get('/edit/:id',edit)

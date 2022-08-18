@@ -4,6 +4,8 @@ const path = require('path');
 const products = require('../data/products.json');
 const brands = require('../data/brands.json');
 
+const {validationResult} = require('express-validator');
+
 module.exports = {
     detail : (req,res) => {
 
@@ -24,24 +26,35 @@ module.exports = {
     },
     store : (req,res) => {
 
-        let {title, price,discount, description, brand, section} = req.body;
+        const errors = validationResult(req);
+        if(errors.isEmpty()){
+              let {title, price,discount, description, brand, section} = req.body;
 
-        let images = req.files.map(file => file.filename);
+                let images = req.files.map(file => file.filename);
 
-        let newProduct = {
-            id : products[products.length - 1].id + 1,
-            ...req.body,
-           title : title.trim(),
-           description : description.trim(),
-           price : +price,
-           discount : +discount,
-           images
+                let newProduct = {
+                    id : products[products.length - 1].id + 1,
+                    ...req.body,
+                title : title.trim(),
+                description : description.trim(),
+                price : +price,
+                discount : +discount,
+                images
+                }
+
+                let productsNew = [...products, newProduct];
+
+                fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew,null,3),'utf-8');    
+                return res.redirect('/products/detail/' + newProduct.id);
+        }else {
+            return res.render('productAdd',{
+                brands : brands.sort(),
+                errors : errors.mapped(),
+                old : req.body
+            })
         }
 
-        let productsNew = [...products, newProduct];
-
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew,null,3),'utf-8');    
-        return res.redirect('/products/detail/' + newProduct.id);
+      
 
     },
     edit : (req,res) => {
