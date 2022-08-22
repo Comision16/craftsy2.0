@@ -205,8 +205,8 @@
    },
    {
       "id": 19,
-      "title": "Motorola G4",
-      "price": 100,
+      "title": "Nokia Plus",
+      "price": 10000,
       "discount": 0,
       "section": "temporada",
       "brand": "Motorola",
@@ -275,6 +275,18 @@
          "product-1660682417572.png",
          "product-1660682417584.jpg",
          "product-1660682417585.jpg"
+      ]
+   },
+   {
+      "id": 25,
+      "title": "Celular Motion",
+      "price": 27000,
+      "discount": 0,
+      "section": "temporada",
+      "brand": "Huawei",
+      "description": "Chino pero bueno",
+      "images": [
+         "product-1660939157794.jpg"
       ]
    }
 ]

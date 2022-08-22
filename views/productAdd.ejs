@@ -26,12 +26,12 @@
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
                                     <label for="price" class="form-label">Precio</label>
-                                    <input class="form-control" id="price" type="number" name="price" value="<%= locals.old && old.price ? old.price : null %>">
+                                    <input class="form-control <%= locals.errors && errors.price ? 'is-invalid' : null %>" id="price" type="number" name="price" value="<%= locals.old && old.price ? old.price : null %>">
                                     <p class="text-danger"><%= locals.errors && errors.price ? errors.price.msg : null %></p>
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
                                     <label for="discount" class="form-label">Descuento</label>
-                                    <input class="form-control" id="discount" type="number" name="discount">
+                                    <input class="form-control" id="discount" type="number" name="discount"value="<%= locals.old && old.discount ? old.discount : 0 %>">
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
                                     <label for="seccion" class="form-label">Sección</label>
@@ -47,23 +47,29 @@
                                           Popular
                                         </label>
                                       </div>
+                                      <p class="text-danger"><%= locals.errors && errors.section ? errors.section.msg : null %></p>
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
                                     <label for="brand" class="form-label">Marca</label>
-                                    <select name="brand" id="brand" class="form-control">
+                                    <select name="brand" id="brand" class="form-control <%= locals.errors && errors.brand ? 'is-invalid' : null %>">
                                         <option value="" hidden selected>Seleccione...</option>
                                         <% brands.forEach(brand => { %>
                                             <option value="<%= brand %>"><%= brand %></option>
                                         <% }) %>
                                     </select>
+                                    <p class="text-danger"><%= locals.errors && errors.brand ? errors.brand.msg : null %></p>
+
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
                                     <label for="description" class="form-label">Descripción</label>
-                                    <textarea class="form-control" name="description" id="description" cols="30" rows="5" style="resize: none;"></textarea>
+                                    <textarea class="form-control <%= locals.errors && errors.description ? 'is-invalid' : null %>" name="description" id="description" cols="30" rows="5" style="resize: none;"><%= locals.old && old.description ? old.description : null %></textarea>
+                                    <p class="text-danger"><%= locals.errors && errors.description ? errors.description.msg : null %></p>
+
                                   </div>
                                   <div class="mb-3 col-12 col-md-6">
-                                    <label class="btn btn-secondary" for="image">Agregar imagen</label>
+                                    <label class="btn btn-secondary <%= locals.errors && errors.image ? 'btn-danger' : null %>" for="image">Agregar imagen</label> 
                                     <input hidden type="file" accept="image/*" name="image" id="image" multiple>
+                                    <p class="text-danger"><%= locals.errors && errors.image ? errors.image.msg : null %></p>
                                   </div>
                                   <div class="text-end">
                                     <button type="submit" class="btn btn-primary">Enviar</button>

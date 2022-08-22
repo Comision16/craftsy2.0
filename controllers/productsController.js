@@ -68,32 +68,41 @@ module.exports = {
         })
     },
     update : (req,res) => {
-
         const products = JSON.parse(fs.readFileSync(path.join(__dirname, '..', 'data', 'products.json')));
 
-        const {id} = req.params;
-        let {title, price,discount, description, brand, section} = req.body;
+        const errors = validationResult(req);
 
+        if(errors.isEmpty()){
+            const {id} = req.params;
+            let {title, price,discount, description, brand, section} = req.body;
+    
 
-        const productModify = products.map(product => {
-            if(product.id === +id){
-                return {
-                    ...product,
-                    title : title.trim(),
-                    description : description.trim(),
-                    price : +price,
-                    discount : +discount,
-                    brand,
-                    section
+            const productModify = products.map(product => {
+                if(product.id === +id){
+                    return {
+                        ...product,
+                        title : title.trim(),
+                        description : description.trim(),
+                        price : +price,
+                        discount : +discount,
+                        brand,
+                        section
+                    }
+                }else{
+                    return product
                 }
-            }else{
-                return product
-            }
-        })
-
-        fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productModify,null,3),'utf-8');    
-        return res.redirect('/products/detail/' + id);
-
+            })
+    
+            fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productModify,null,3),'utf-8');    
+            return res.redirect('/products/detail/' + id);
+        }else{
+            return res.render('productEdit',{
+                product : req.body,
+                id : req.params.id,
+                brands,
+                errors : errors.mapped()
+            })
+        }
     },
     remove : (req,res) => {
         return res.render('confirm', {
