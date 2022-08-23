@@ -11,16 +11,16 @@
         <section class="login__main__section general__main__section">
            <h1>Ingresá</h1>
         
-           <form action="/users/profile" method="GET">
+           <form action="" method="POST">
                 <div class="form__box">
-                    <label class="form__label" for="usuario">Nombre de usuario o email</label>
-                    <input class="form__input" type="text" id="usuario" name="email">
-                    <span class="form__error__msg">Ingresá tu nombre de usuario o email</span>
+                    <label class="form__label" for="email">Email</label>
+                    <input class="form__input" type="text" id="email" name="email">
+                    <p class="form__error__msg"><%= locals.errors && errors.email ? errors.email.msg : null %></p>
                 </div>
                 <div class="form__box">
                     <label class="form__label" for="password">Contraseña</label>
                     <input class="form__input" type="password" id="password" name="password">
-                    <span class="form__error__msg">La contraseña debe tener entre 6 y 12 caracteres</span>
+                    <p class="form__error__msg"><%= locals.errors && errors.password ? errors.password.msg : null %></p>
                 </div>
                 <div class="form__box__flex">
                     <input class="form__input--checkbox" type="checkbox" id="recordame"><label for="recordame">Recordame</label>
