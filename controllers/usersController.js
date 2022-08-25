@@ -11,7 +11,6 @@ module.exports = {
     processRegister : (req,res) => {
 
         let errors = validationResult(req);
-
         if(errors.isEmpty()){
             const {name,surname,email,password,username} = req.body;
             let users = loadUsers();
@@ -22,14 +21,16 @@ module.exports = {
                 surname : surname.trim(),
                 email : email.trim(),
                 password : bcryptjs.hashSync(password,12),
-                username : username.trim()
+                username : username.trim(),
+                rol : 'user',
+                avatar : null
             }
     
             let usersModify = [...users, newUser];
     
-            storeUsers(usersModify)
+            storeUsers(usersModify);
     
-            return res.redirect('/users/login')
+            return res.redirect('/users/login');
         }else{
             return res.render('register',{
                 title: 'Register',
@@ -46,7 +47,18 @@ module.exports = {
     processLogin : (req,res) => {
         let errors = validationResult(req);
         if(errors.isEmpty()){
-            return res.redirect('/users/profile')
+
+        let {id,name,username, rol, avatar} = loadUsers().find(user => user.email === req.body.email);
+
+        req.session.userLogin ={
+            id,
+            username,
+            name,
+            rol,
+            avatar
+        }
+
+            return res.redirect('/')
         }else {
             return res.render('login',{
                 title: 'Login',
@@ -56,8 +68,14 @@ module.exports = {
     },
    
     profile : (req,res) => {
+        let user = loadUsers().find(user => user.id === req.session.userLogin.id)
         return res.render('profile',{
-            title: 'Profile'
+            title: 'Profile',
+            user
         })
+    },
+    logout : (req,res) => {
+        req.session.destroy();
+        return res.redirect('/')
     }
 }
