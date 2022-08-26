@@ -56,6 +56,12 @@ module.exports = {
             name,
             rol,
             avatar
+        };
+
+        if(req.body.remember){
+            res.cookie('craftsy16',req.session.userLogin,{
+                maxAge : 1000 * 60
+            })
         }
 
             return res.redirect('/')
@@ -76,6 +82,7 @@ module.exports = {
     },
     logout : (req,res) => {
         req.session.destroy();
+        res.cookie('craftsy16',null,{maxAge: -1});
         return res.redirect('/')
     }
 }
