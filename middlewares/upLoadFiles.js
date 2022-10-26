@@ -8,12 +8,14 @@ const storageImageProduct = multer.diskStorage({
     filename : (req,file,callback) => {
         callback(null,'product-' + Date.now() + path.extname(file.originalname))
         /* callback(null,`product-${Date.now()}${path.extname(file.originalname)}`) */
+        
     }
 });
 
 const uploadImageProduct = multer({
-    storage : storageImageProduct
+    storage : storageImageProduct,
 });
+
 
 module.exports = {
     uploadImageProduct

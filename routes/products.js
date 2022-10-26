@@ -11,7 +11,7 @@ const adminUserCheck = require('../middlewares/adminUserCheck');
 /* /products */
 router
     .get('/add', adminUserCheck,add)
-    .post('/add',uploadImageProduct.array('image',3),productsAddValidator,store)
+    .post('/add',uploadImageProduct.array('image'),productsAddValidator,store)
     /*.post('/add',uploadImageProduct.single('image'),store)*/
     .get('/detail/:id',detail)
     .get('/edit/:id',adminUserCheck, edit)

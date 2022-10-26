@@ -25,8 +25,9 @@ module.exports = {
         })
     },
     store : (req,res) => {
-
+       
         const errors = validationResult(req);
+       
         if(errors.isEmpty()){
               let {title, price,discount, description, brand, section} = req.body;
 
@@ -47,6 +48,13 @@ module.exports = {
                 fs.writeFileSync(path.join(__dirname, '..', 'data', 'products.json'),JSON.stringify(productsNew,null,3),'utf-8');    
                 return res.redirect('/products/detail/' + newProduct.id);
         }else {
+
+            if(req.files.length){
+                req.files.forEach(file => {
+                    fs.unlinkSync(path.join(__dirname, '../public/images/products/'+ file.filename))
+                })
+            }
+            
             return res.render('productAdd',{
                 brands : brands.sort(),
                 errors : errors.mapped(),

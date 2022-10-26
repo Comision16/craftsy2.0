@@ -30,5 +30,13 @@ module.exports = [
             }else {
                 return false
             }
-        }).withMessage('Debes agregar una imagen')
+        }).withMessage('Debes agregar una imagen'),
+    body('image')
+        .custom((value,{req}) => {
+            if(req.files.length > 3 ){
+                return false
+            }else {
+                return true
+            }
+        }).withMessage('Solo se permiten 3 imágenes')
 ]
